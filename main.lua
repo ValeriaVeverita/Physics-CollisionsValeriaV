@@ -87,7 +87,7 @@ local beam3 = display.newImage("Images/beam.png", 0, 0)
   beam3:toBack()
 
   --add to physics
-  physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
+  physics.addBody(beam3, "static", {friction=0.5, bounce=0.3})
 
 --create bkg
 local bkg  = display.newImage("Images/bkg.png", 0, 0)
@@ -161,10 +161,42 @@ end
 local function fifthBall()
 
   --create the object
-  local ball5 = display.newImage("Images/super_ball.png", 0, 0)
+  local ball5 = display.newImage("Images/super_ball.png", 900, 300)
 
   --adding to physics
-  physics.addBody(ball5)
+  physics.addBody(ball5, "dynamic", {density = 0.5, friction = 0.2, bounce = 0.6, radius = 100})
+
+  --set the scale of the object
+  ball5:scale(4, 4)
+end
+
+----------------------------------------------------------------------------------------------------
+
+local function sixthBall()
+
+	--create the object
+	local ball6 = display.newImage("Images/super_ball.png", 900, 300)
+
+	--adding to physics
+	physics.addBody(ball6,{ density = 1, friction = 0, bounce = 1.5, radius = 50})
+
+	--set the scale of the object
+	ball6:scale(2, 2)
+end
+
+---------------------------------------------------------------------------------------------------
+
+local function seventhBall()
+	
+	--create the object
+	local ball7 = display.newImage("Images/super_ball.png", 900, 300)
+
+	--adding to physics
+	physics.addBody(ball7, {density = 1, friction = 0.5, bounce = 0.5, radius = 50})
+
+	--set the scale
+	ball7:scale(2,2)
+end
 --------------------------------------------------------------------------------------------------
 --TIMER DELAYS - call each function after the given milliseconds
 --------------------------------------------------------------------------------------------------
@@ -172,3 +204,6 @@ timer.performWithDelay( 0, fisrtBall)
 timer.performWithDelay( 500, secondBall)
 timer.performWithDelay( 1000, thirdBall)
 timer.performWithDelay(2000, fourthBall)
+timer.performWithDelay(5000, fifthBall)
+timer.performWithDelay(6000, sixthBall)
+timer.performWithDelay(7000, seventhBall)
