@@ -48,6 +48,47 @@ local beam = display.newImage("Images/beam.png", 0, 0)
    --add to physics
    physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
 
+-----------------------------------------------------------------------
+--create a second local beam that will prevent the balls 
+--from going out of screen
+local beam2 = display.newImage("Images/beam.png", 0, 0)
+
+  --set the x and y position
+  beam2.x = display.contentWidth 
+  beam2.y = 350
+
+  --set the beam size
+  beam2.width = 70
+  beam2.height = display.contentHeight + 100
+
+  --send it to bacl layer
+  beam2:toBack()
+
+  --add to physics
+  physics.addBody(beam2, "static", {friction = 0.5, bounce = 0.3})
+
+-----------------------------------------------------------------------
+
+--create the object
+local beam3 = display.newImage("Images/beam.png", 0, 0)
+
+  --set the x and y position
+  beam3.x = 900
+  beam3.y = display.contentCenterY
+
+  --set the beam size
+  beam3.width = 70
+  beam3.height = 300
+
+  --rotate the beam -60 degrees do its on an angle
+  beam3:rotate(60)
+
+  -- send it to the back layer
+  beam3:toBack()
+
+  --add to physics
+  physics.addBody(beam, "static", {friction=0.5, bounce=0.3})
+
 --create bkg
 local bkg  = display.newImage("Images/bkg.png", 0, 0)
 
@@ -78,7 +119,7 @@ end
 -----------------------------------------------------------------------------------------------
 
 local function secondBall()
-	--creating first ball
+	--creating second ball
 	local ball2 = display.newImage("Images/super_ball.png", 0, 0)
 
 	--adding to physics
@@ -88,8 +129,46 @@ local function secondBall()
 	ball2:scale(0.5, 0.5)
 end
 
+-------------------------------------------------------------------------------------------------
+
+local function thirdBall()
+    --creating third ball
+    local ball3 = display.newImage("Images/super_ball.png", 0, 0)
+
+    --adding to physics
+    physics.addBody(ball3, { density = 1.0, friction = 1, bounce = 0.5, radius = 37.5})
+
+    --make the ball bigger than the original size
+    ball3:scale(1.5, 1.5)
+end
+
+---------------------------------------------------------------------------------------------------
+
+local function fourthBall()
+
+	--create the object
+	local ball4 = display.newImage("Images/super_ball.png", 0, 0)
+
+	--adding to physics
+	physics.addBody(ball4, "dynamic", {density = 0.7, friction = 0, bounce = 1, radius = 75})
+
+	--set the scale of the object
+	ball4:scale(3, 3)
+end
+
+--------------------------------------------------------------------------------------------------
+
+local function fifthBall()
+
+  --create the object
+  local ball5 = display.newImage("Images/super_ball.png", 0, 0)
+
+  --adding to physics
+  physics.addBody(ball5)
 --------------------------------------------------------------------------------------------------
 --TIMER DELAYS - call each function after the given milliseconds
 --------------------------------------------------------------------------------------------------
 timer.performWithDelay( 0, fisrtBall)
 timer.performWithDelay( 500, secondBall)
+timer.performWithDelay( 1000, thirdBall)
+timer.performWithDelay(2000, fourthBall)
